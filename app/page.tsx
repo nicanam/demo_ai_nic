@@ -129,7 +129,7 @@ export default function Home() {
   }, [anamClient]);
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col min-h-0 h-full">
       {/* Black Header Bar with Logo */}
       <header className="h-[100px] bg-black flex items-center justify-center flex-shrink-0">
         <Image
@@ -142,35 +142,35 @@ export default function Home() {
         />
       </header>
 
-      {/* Main Content */}
-      <main className="flex-1 flex flex-col items-center justify-center overflow-hidden">
-        <div className="w-full text-center flex flex-col h-full justify-center">
+      {/* Main Content - Using available space minus header and footer */}
+      <main className="flex-1 flex flex-col items-center justify-center px-4 py-4 min-h-0">
+        <div className="w-full text-center flex flex-col h-full max-w-6xl mx-auto">
           {/* Main Text */}
-          <div className="mb-6 px-4">
+          <div className="mb-4 flex-shrink-0">
             <h1 className="text-xl md:text-2xl font-semibold text-gray-800">
               Talk to AI Sales Agent
             </h1>
           </div>
 
-          {/* Preview Image OR Video Chat */}
-          <div className="mb-6 flex-shrink w-full max-w-4xl mx-auto">
+          {/* Preview Image OR Video Chat - Takes available space */}
+          <div className="flex-1 flex flex-col justify-center min-h-0">
             {!isChatActive ? (
-              // Preview Image
-              <div className="relative w-full">
+              // Preview Image - Responsive to available space
+              <div className="relative w-full max-h-full flex items-center justify-center">
                 <Image
                   src="/sales_agent_preview.png"
                   alt="AI Sales Agent Preview"
                   width={800}
                   height={600}
-                  className="w-full h-auto object-contain"
+                  className="w-full max-h-full object-contain"
                   priority
                 />
               </div>
             ) : (
-              // Video Chat Interface
-              <div className="w-full bg-gray-900 flex flex-col p-4 rounded-lg">
+              // Video Chat Interface - Responsive height
+              <div className="w-full bg-gray-900 flex flex-col p-4 rounded-lg min-h-0 flex-1">
                 {/* Status Bar */}
-                <div className="flex justify-between items-center bg-white p-3 mb-4 rounded-lg shadow-sm">
+                <div className="flex justify-between items-center bg-white p-3 mb-4 rounded-lg shadow-sm flex-shrink-0">
                   <div className="flex items-center">
                     <div
                       className={`h-3 w-3 rounded-full ${
@@ -186,8 +186,8 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Video Area */}
-                <div className="relative w-full h-[500px] bg-black flex items-center justify-center rounded-lg overflow-hidden">
+                {/* Video Area - Takes remaining space */}
+                <div className="relative w-full flex-1 bg-black flex items-center justify-center rounded-lg overflow-hidden min-h-[300px]">
                   {/* Loading/Error States */}
                   {(isLoadingAI || error) && (
                     <div className="absolute inset-0 flex items-center justify-center z-30 bg-black/60">
@@ -246,7 +246,7 @@ export default function Home() {
           </div>
 
           {/* Start/Stop Button */}
-          <div className="flex-shrink-0 px-4 pb-8">
+          <div className="flex-shrink-0 pt-4">
             {!isChatActive ? (
               <button
                 onClick={startChat}

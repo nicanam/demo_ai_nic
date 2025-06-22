@@ -17,8 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gray-50 antialiased flex flex-col h-screen`}>
-        <div className="flex-1 min-h-0">
+      <body className={`${inter.className} bg-gray-50 antialiased flex flex-col min-h-screen`}>
+        <div className="flex-1 flex flex-col min-h-0">
           {children}
         </div>
         <CallToActionButton />
