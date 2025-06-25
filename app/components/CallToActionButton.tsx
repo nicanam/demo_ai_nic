@@ -16,7 +16,7 @@ export default function CallToActionButton() {
   if (!showButton) return null;
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
+    <div className="fixed top-8 right-8 z-50">
       <a
         href="https://calendar.app.google/pa4tCGvqtZq5Jdhj9"
         target="_blank"
