@@ -47,7 +47,7 @@ export default function Home() {
       setError(null);
 
       // Use the provided Persona ID from the requirements
-      const personaId = "a5d6a1e3-391b-4976-85eb-204c9b4a55b1";
+      const personaId = "9a1f2ea1-cdd7-4745-819a-eb7a18c2f733";
       
       // Fetch session token from API
       const response = await fetch(`/api/anam-auth/${personaId}`);
@@ -146,31 +146,31 @@ export default function Home() {
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-2 min-h-0 overflow-hidden">
         <div className="w-full text-center flex flex-col h-full max-w-6xl mx-auto">
           {/* Main Text */}
-          <div className="mb-2 flex-shrink-0">
+          <div className="mb-4 flex-shrink-0">
             <h1 className="text-xl md:text-2xl font-semibold text-gray-800">
-              Talk to AI Sales Agent
+              Talk to AI Nic, Sales at Anam
             </h1>
           </div>
 
           {/* Preview Image OR Video Chat - Takes available space */}
-          <div className="flex-1 flex flex-col justify-center min-h-0 mb-2">
+          <div className="flex-1 flex flex-col justify-center min-h-0 mb-6">
             {!isChatActive ? (
-              // Preview Image - Responsive to available space
-              <div className="relative w-full h-full flex items-center justify-center">
+              // Preview Image - Responsive to available space, made smaller
+              <div className="relative w-full h-full flex items-center justify-center max-h-[60vh]">
                 <Image
-                  src="/sales_agent_preview.png"
-                  alt="AI Sales Agent Preview"
-                  width={800}
-                  height={600}
+                  src="/ai_nic_gif.gif"
+                  alt="AI Nic Preview"
+                  width={600}
+                  height={450}
                   className="w-full h-full object-contain"
                   priority
                 />
               </div>
             ) : (
-              // Video Chat Interface - Responsive height
-              <div className="w-full bg-gray-900 flex flex-col p-3 rounded-lg h-full min-h-0">
-                {/* Status Bar */}
-                <div className="flex justify-between items-center bg-white p-2 mb-3 rounded-lg shadow-sm flex-shrink-0">
+              // Video Chat Interface - Gray container extended to fully contain video
+              <div className="w-full bg-gray-900 flex flex-col p-4 rounded-lg h-full min-h-0 max-w-4xl mx-auto" style={{ paddingBottom: "6rem", minHeight: "80vh" }}>
+                {/* Status Bar - Fixed at top */}
+                <div className="flex justify-between items-center bg-white p-3 mb-4 rounded-lg shadow-sm flex-shrink-0">
                   <div className="flex items-center">
                     <div
                       className={`h-3 w-3 rounded-full ${
@@ -186,8 +186,8 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Video Area - Takes remaining space */}
-                <div className="relative w-full flex-1 bg-black flex items-center justify-center rounded-lg overflow-hidden">
+                {/* Video Area - Keep original video position, extend container height */}
+                <div className="relative w-full flex-1 bg-black flex items-center justify-center rounded-lg overflow-hidden" style={{ minHeight: "70vh" }}>
                   {/* Loading/Error States */}
                   {(isLoadingAI || error) && (
                     <div className="absolute inset-0 flex items-center justify-center z-30 bg-black/60">
@@ -213,7 +213,7 @@ export default function Home() {
                               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                             />
                           </svg>
-                          Connecting to AI Sales Agent...
+                          Connecting to AI Nic...
                         </div>
                       )}
                       {error && (
@@ -230,11 +230,11 @@ export default function Home() {
                     </div>
                   )}
 
-                  {/* Video and Audio Elements */}
+                  {/* Video and Audio Elements - Full video display */}
                   <video
                     ref={videoRef}
                     id="anam-video-feed"
-                    className="w-full h-full object-cover rounded-lg"
+                    className="w-full h-full object-contain rounded-lg"
                     autoPlay
                     playsInline
                     muted={false}
@@ -245,27 +245,29 @@ export default function Home() {
             )}
           </div>
 
-          {/* Start/Stop Button */}
-          <div className="flex-shrink-0">
+          {/* Start/Stop Button - Larger with pulsing animation */}
+          <div className="flex-shrink-0 mb-4">
             {!isChatActive ? (
               <button
                 onClick={startChat}
                 disabled={isLoadingAI}
-                className={`px-6 py-3 ${
+                className={`px-12 py-6 ${
                   isLoadingAI
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-blue-600 hover:bg-blue-700"
-                } text-white text-lg font-semibold rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105`}
+                    : "bg-blue-600 hover:bg-blue-700 gentle-pulse"
+                } text-white text-2xl font-semibold rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105`}
               >
-                {isLoadingAI ? "Starting..." : "Start Chatting with AI Sales Agent"}
+                {isLoadingAI ? "Starting..." : "Start Chatting with AI Nic"}
               </button>
             ) : (
-              <button
-                onClick={stopChat}
-                className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white text-lg font-semibold rounded-lg shadow-lg transition-all duration-200"
-              >
-                Stop Chat
-              </button>
+              <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 z-50 pb-4">
+                <button
+                  onClick={stopChat}
+                  className="px-12 py-6 bg-red-600 hover:bg-red-700 text-white text-2xl font-semibold rounded-lg shadow-lg transition-all duration-200"
+                >
+                  Stop Chat
+                </button>
+              </div>
             )}
           </div>
         </div>

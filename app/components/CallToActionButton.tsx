@@ -16,14 +16,14 @@ export default function CallToActionButton() {
   if (!showButton) return null;
 
   return (
-    <div className="fixed top-4 right-4 z-50">
+    <div className="fixed bottom-8 right-8 z-50">
       <a
         href="https://calendar.app.google/pa4tCGvqtZq5Jdhj9"
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-green-100 hover:bg-green-200 border border-green-300 text-green-800 px-4 py-2 rounded-lg shadow-lg text-sm font-medium transition-all duration-200 transform hover:scale-105"
+        className="bg-green-100 hover:bg-green-200 border border-green-300 text-black px-6 py-3 rounded-lg shadow-lg text-lg font-medium transition-all duration-200 transform hover:scale-105"
       >
-        Book a Call 📞
+        Book time with human Nic here.
       </a>
     </div>
   );
