@@ -34,7 +34,7 @@ export default function RootLayout({
                   rel="noopener noreferrer"
                   className="bg-blue-100 hover:bg-blue-200 border border-blue-300 text-black px-6 py-3 rounded-lg shadow-lg text-lg font-medium transition-all duration-200 transform hover:scale-105"
                 >
-                  Nic's LinkedIn
+                  Nic&apos;s LinkedIn
                 </a>
               </div>
               <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
