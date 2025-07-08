@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-gray-50 antialiased`}>
         <div className="h-screen flex flex-col">
-          <div className="flex-1 flex flex-col min-h-0" style={{ paddingBottom: "120px" }}>
+          <div className="flex-1 flex flex-col min-h-0" style={{ maxHeight: "calc(100vh - 120px)" }}>
             {children}
           </div>
           <CallToActionButton />

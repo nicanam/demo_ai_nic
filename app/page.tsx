@@ -143,8 +143,12 @@ export default function Home() {
       </header>
 
       {/* Main Content - Constrained to fit between header and footer */}
-      <main className="flex-1 flex flex-col items-center justify-center px-4 py-2 min-h-0 overflow-hidden">
-        <div className="w-full text-center flex flex-col h-full max-w-6xl mx-auto">
+      <main className={`flex-1 flex flex-col items-center justify-center px-4 py-2 min-h-0 overflow-hidden ${
+        !isChatActive ? 'max-h-[calc(100vh-220px)]' : ''
+      }`}>
+        <div className={`w-full text-center flex flex-col max-w-6xl mx-auto ${
+          !isChatActive ? 'h-full' : 'h-full'
+        }`}>
           {/* Main Text */}
           <div className="mb-4 flex-shrink-0">
             <h1 className="text-xl md:text-2xl font-semibold text-gray-800">
@@ -168,7 +172,7 @@ export default function Home() {
               </div>
             ) : (
               // Video Chat Interface - Gray container extended to fully contain video
-              <div className="w-full bg-gray-900 flex flex-col p-4 rounded-lg h-full min-h-0 max-w-4xl mx-auto" style={{ paddingBottom: "6rem", minHeight: "80vh" }}>
+              <div className="w-full bg-gray-900 flex flex-col p-4 rounded-lg h-full min-h-0 max-w-4xl mx-auto" style={{ paddingBottom: "6rem", minHeight: "70vh" }}>
                 {/* Status Bar - Fixed at top */}
                 <div className="flex justify-between items-center bg-white p-3 mb-4 rounded-lg shadow-sm flex-shrink-0">
                   <div className="flex items-center">
