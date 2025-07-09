@@ -143,24 +143,24 @@ export default function Home() {
       </header>
 
       {/* Main Content - Constrained to fit between header and footer */}
-      <main className={`flex-1 flex flex-col items-center justify-center px-4 py-2 min-h-0 overflow-hidden ${
-        !isChatActive ? 'max-h-[calc(100vh-220px)]' : ''
+      <main className={`flex-1 flex flex-col items-center px-4 min-h-0 overflow-hidden ${
+        !isChatActive ? 'max-h-[calc(100vh-220px)] justify-center' : 'justify-start py-2'
       }`}>
         <div className={`w-full text-center flex flex-col max-w-6xl mx-auto ${
           !isChatActive ? 'h-full' : 'h-full'
         }`}>
           {/* Main Text */}
-          <div className="mb-4 flex-shrink-0">
+          <div className={`flex-shrink-0 ${!isChatActive ? 'mb-4' : 'mb-2'}`}>
             <h1 className="text-xl md:text-2xl font-semibold text-gray-800">
               Talk to AI Nic, Sales at Anam
             </h1>
           </div>
 
           {/* Preview Image OR Video Chat - Takes available space */}
-          <div className="flex-1 flex flex-col justify-center min-h-0 mb-6">
+          <div className={`flex-1 flex flex-col justify-center min-h-0 ${!isChatActive ? 'mb-4' : 'mb-2'}`}>
             {!isChatActive ? (
               // Preview Image - Responsive to available space, made smaller
-              <div className="relative w-full h-full flex items-center justify-center max-h-[60vh]">
+              <div className="relative w-full h-full flex items-center justify-center max-h-[45vh]">
                 <Image
                   src="/ai_nic_gif.gif"
                   alt="AI Nic Preview"
@@ -171,10 +171,10 @@ export default function Home() {
                 />
               </div>
             ) : (
-              // Video Chat Interface - Gray container extended to fully contain video
-              <div className="w-full bg-gray-900 flex flex-col p-4 rounded-lg h-full min-h-0 max-w-4xl mx-auto" style={{ paddingBottom: "6rem", minHeight: "70vh" }}>
-                {/* Status Bar - Fixed at top */}
-                <div className="flex justify-between items-center bg-white p-3 mb-4 rounded-lg shadow-sm flex-shrink-0">
+              // Video Chat Interface - Compact layout
+              <div className="w-full flex flex-col max-w-4xl mx-auto">
+                {/* Status Bar - Right above video */}
+                <div className="flex justify-between items-center bg-white p-2 mb-1 rounded-lg shadow-sm flex-shrink-0">
                   <div className="flex items-center">
                     <div
                       className={`h-3 w-3 rounded-full ${
@@ -190,8 +190,8 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Video Area - Keep original video position, extend container height */}
-                <div className="relative w-full flex-1 bg-black flex items-center justify-center rounded-lg overflow-hidden" style={{ minHeight: "70vh" }}>
+                {/* Video Area - Compact black container */}
+                <div className="relative w-full bg-black flex items-center justify-center rounded-lg overflow-hidden" style={{ aspectRatio: "16/9", minHeight: "300px" }}>
                   {/* Loading/Error States */}
                   {(isLoadingAI || error) && (
                     <div className="absolute inset-0 flex items-center justify-center z-30 bg-black/60">
@@ -238,7 +238,7 @@ export default function Home() {
                   <video
                     ref={videoRef}
                     id="anam-video-feed"
-                    className="w-full h-full object-contain rounded-lg"
+                    className="w-full h-full object-contain"
                     autoPlay
                     playsInline
                     muted={false}
@@ -255,19 +255,19 @@ export default function Home() {
               <button
                 onClick={startChat}
                 disabled={isLoadingAI}
-                className={`px-12 py-6 ${
+                className={`px-8 py-4 ${
                   isLoadingAI
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-blue-600 hover:bg-blue-700 gentle-pulse"
-                } text-white text-2xl font-semibold rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105`}
+                } text-white text-xl font-semibold rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105`}
               >
                 {isLoadingAI ? "Starting..." : "Start Chatting with AI Nic"}
               </button>
             ) : (
-              <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 z-50 pb-4">
+              <div className="mt-4 flex justify-center">
                 <button
                   onClick={stopChat}
-                  className="px-12 py-6 bg-red-600 hover:bg-red-700 text-white text-2xl font-semibold rounded-lg shadow-lg transition-all duration-200"
+                  className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white text-xl font-semibold rounded-lg shadow-lg transition-all duration-200"
                 >
                   Stop Chat
                 </button>
