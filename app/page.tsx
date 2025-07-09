@@ -144,23 +144,23 @@ export default function Home() {
 
       {/* Main Content - Constrained to fit between header and footer */}
       <main className={`flex-1 flex flex-col items-center px-4 min-h-0 overflow-hidden ${
-        !isChatActive ? 'max-h-[calc(100vh-220px)] justify-center' : 'justify-start py-2'
+        !isChatActive ? 'max-h-[calc(100vh-260px)] sm:max-h-[calc(100vh-240px)] justify-center' : 'justify-start py-2'
       }`}>
         <div className={`w-full text-center flex flex-col max-w-6xl mx-auto ${
           !isChatActive ? 'h-full' : 'h-full'
         }`}>
           {/* Main Text */}
-          <div className={`flex-shrink-0 ${!isChatActive ? 'mb-4' : 'mb-2'}`}>
-            <h1 className="text-xl md:text-2xl font-semibold text-gray-800">
+          <div className={`flex-shrink-0 ${!isChatActive ? 'mb-2 sm:mb-4' : 'mb-2'}`}>
+            <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800">
               Talk to AI Nic, Sales at Anam
             </h1>
           </div>
 
           {/* Preview Image OR Video Chat - Takes available space */}
-          <div className={`flex-1 flex flex-col justify-center min-h-0 ${!isChatActive ? 'mb-4' : 'mb-2'}`}>
+          <div className={`flex-1 flex flex-col justify-center min-h-0 ${!isChatActive ? 'mb-2 sm:mb-4' : 'mb-2'}`}>
             {!isChatActive ? (
               // Preview Image - Responsive to available space, made smaller
-              <div className="relative w-full h-full flex items-center justify-center max-h-[45vh]">
+              <div className="relative w-full h-full flex items-center justify-center max-h-[35vh] sm:max-h-[40vh]">
                 <Image
                   src="/ai_nic_gif.gif"
                   alt="AI Nic Preview"
@@ -250,16 +250,16 @@ export default function Home() {
           </div>
 
           {/* Start/Stop Button - Larger with pulsing animation */}
-          <div className="flex-shrink-0 mb-4">
+          <div className="flex-shrink-0 mb-2 sm:mb-4">
             {!isChatActive ? (
               <button
                 onClick={startChat}
                 disabled={isLoadingAI}
-                className={`px-8 py-4 ${
+                className={`px-6 py-3 sm:px-8 sm:py-4 ${
                   isLoadingAI
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-blue-600 hover:bg-blue-700 gentle-pulse"
-                } text-white text-xl font-semibold rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105`}
+                } text-white text-lg sm:text-xl font-semibold rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105`}
               >
                 {isLoadingAI ? "Starting..." : "Start Chatting with AI Nic"}
               </button>
